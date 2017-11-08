@@ -1,0 +1,10 @@
+{% extends "studygame/base.html" %}
+{% block content %}
+    少侠！有个小英兽呦的一声就跑了，你能找出它吗？
+    <form action="/studygame/dictate_en_word_result/" method="post" style="line-height: 33px">{% csrf_token %}
+        依稀看到它在地上只留下了这些线索：【<input type="text" readonly="true" style="color: blue;border-style: hidden" name="paraphrase" value="{{ paraphrase }}" >】<br>
+        <input type="text" name="word"><br>
+        <input type="submit" value="就是它！"></br>
+    </form>
+
+{% endblock %}

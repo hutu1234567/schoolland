@@ -1,0 +1,10 @@
+{% extends "admin/base.html" %}
+
+{% block title %}{{ title }} | {{ site_title|default:_('my site') }}{% endblock %}
+
+{% block branding %}
+    <h1 id="site-name"><a href="{% url 'admin:index' %}">欢迎进入斯古大陆！</a><a href="/studygame/task_center?subject=all" >【回到游戏】</a></h1>
+
+{% endblock %}
+
+{% block nav-global %}{% endblock %}

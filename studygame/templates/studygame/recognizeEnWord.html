@@ -1,0 +1,20 @@
+{% extends "studygame/base.html" %}
+{% block content %}
+
+    少侠！有个小英兽呦的一声就跑了，你能找出它吗？
+    <form action="/studygame/recognize_en_word_result/" method="post" style="line-height: 33px">{% csrf_token %}
+        依稀看到它在地上留下了这样一个记号：<input type="text" readonly="true" style="color: blue;border-style: hidden" name="word" value="{{ question }}"><br>
+        <input type="hidden" name="answer" value="{{ answer }}">
+        {% for paraphrase in paraphrase_list %}
+
+            <label>
+                    <input name="choice" type="radio" value="{{ paraphrase }}" /> {{ paraphrase }} </input></br>
+            </label>
+
+        {% endfor %}
+            <input type="submit" value="就是它！"></br>
+        </table>
+
+    </form>
+
+{% endblock %}

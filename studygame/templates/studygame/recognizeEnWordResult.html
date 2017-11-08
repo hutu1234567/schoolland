@@ -1,0 +1,48 @@
+{% extends "studygame/base.html" %}
+{% block content %}
+    {% load staticfiles %}
+    {% if isFound == 1 %}
+        <img src="{% static 'studygame/img/treat/encouragement.png' %}" height="150px" width="150px"><br>
+        少侠！恭喜，你找到了小英兽。
+        <div>
+        <img src="{% static 'studygame/img/monster/monster0.jpg' %}" height="100px" width="100px"><br>
+        它正是那个小英兽。<br>
+        它留下的记号是：【{{ word }}】<br>
+        这个记号的表示：【{{ paraphrase }}】<br>
+
+        你获得了一根【英兽之羽】，你现在拥有{{ count }}根英兽之羽，
+        {% if count >= 10 %}
+            你完成了【认识10只英兽】的小任务，可<a href="doneTask?taskid=000001">领取</a>任务奖励。
+        {% else %}
+            你尚未完成搜集【10】个英兽之羽的小任务，继续加油哦！。
+        {% endif %}
+        </div>
+    {% else %}
+        <div>
+            <img src="{% static 'studygame/img/treat/comfort.png' %}" height="150px" width="150px"><br>
+            少侠！很遗憾，你找错了。<br>
+            <img src="{% static 'studygame/img/monster/monster0.jpg' %}"><br>
+            它才是那个小英兽。<br>
+            它留下的记号是：【{{ word }}】<br>
+            这个记号的表示：【{{ paraphrase }}】<br>
+
+            <img src="{% static 'studygame/img/monster/monster1.jpg' %}"><br>
+            而你选择的是另一只小英兽。<br>
+            它会留下的记号是：【{{ word2 }}】<br>
+            这个记号的意思是：【{{ paraphrase2 }}】<br>
+
+            你未获得英兽之羽，你现在拥有【{{ count }}】根英兽之羽，
+            {% if count >= 10 %}
+                <form action="/studygame/complete_task" method="post">{% csrf_token %}
+                    <input type="hidden" name="task_id" value="know_ten_english_word">
+                    <input type="hidden"  name="report" value="用10个英兽之羽兑换任务奖励">
+                你完成了搜集【10】个英兽之羽的小任务，可<input type="submit">领取</input>任务奖励。
+                </form>
+            {% else %}
+                你尚未完成搜集【10】个英兽之羽的小任务，继续加油哦！。
+            {% endif %}
+
+        </div>
+    {% endif %}
+    <a href="\studygame\recognize_en_word">寻找下一个小英兽。</a>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "studygame/base.html" %}
+{% load staticfiles %}
+{% block content %}
+    <form action="save_en_word" method="post" id="fromId">{% csrf_token %}
+        <label>它的记号是[How do spell it?]：</label><br><input type="text" name="word"><br>
+        <label>它的叫声是[What sound is its?]：</label><br><input type="text" name="pronunciation" value=" "><br>
+        <label>它表达的意思是[What does it mean?]：</label><br><input type="text" name="paraphrase"><br>
+        <label>它出自哪个地域[Which book is it from?]</label><br>
+        <select name="book" >
+            <option value="unknown">请选择</option>
+              {% for k,v in books %}
+                 <option value="{{k}}">{{v}}</option>
+              {% endfor %}
+         </select>
+        <br><br>
+        <input type="image" src="{% static 'studygame/img/monster/hatch.png' %}"  title="孵化[hatch]"
+               onclick="javascript:docucument.getElementById('fromId').submit();" style="width:150px;height:120px"/>
+    </form>
+{% endblock %}

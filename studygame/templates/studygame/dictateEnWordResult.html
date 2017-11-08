@@ -1,0 +1,24 @@
+{% extends "studygame/base.html" %}
+{% block content %}
+    {% if isRight %}
+        恭喜，你完全写对了它的名字，被你收进了宝葫芦，你得到了一个【英兽之形】。<br>
+        它的名字是：【{{ word }}】<br>
+        它的意思是：【{{ paraphrase }}】<br>
+    {% else %}
+        真遗憾，你没有写对它的名字，所以被它溜掉了， 你写的名字是【{{ word }}】，<br>
+        而其实应是：【{{ word2 }}】<br>
+        它的意思是：【{{ paraphrase }}】<br>
+    {% endif %}
+    你现在拥有【{{ count }}】个【英兽之形】，
+    {% if count >= 5 %}
+        <form action="/studygame/complete_task" method="post">{% csrf_token %}
+            <input type="hidden" name="task_id" value="dictate_five_english_word">
+            <input type="hidden"  name="report" value="用5个英兽之形兑换任务奖励">
+        你完成了搜集【5】个【英兽之形】的小任务，可<input type="submit">领取</input>任务奖励。
+        </form>
+    {% else %}
+        你尚未完成搜集【5】个【英兽之形】的小任务，继续加油哦！。
+    {% endif %}
+    <br><a href="\studygame\dictate_en_word">抓捕下一个小英兽。</a>
+
+{% endblock %}

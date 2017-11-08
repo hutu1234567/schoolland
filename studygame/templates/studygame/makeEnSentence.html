@@ -1,0 +1,9 @@
+{% extends "studygame/base.html" %}
+{% block content %}
+少侠！斯古无聊了，请使用【{{ word }}】为国王说上一句话吧。<br><br><br>
+<form action="/studygame/make_en_sentence_result/" method="post">{% csrf_token %}
+    <input type="hidden" name="word" value="{{ word }}">
+    <textarea name="sentence" maxlength="500" style="height: 100px ;width: 350px"></textarea><br><br>
+    <input type="submit" value="说给国王听">
+</form>
+{% endblock %}

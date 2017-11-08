@@ -1,0 +1,20 @@
+{% extends "studygame/base.html" %}
+{% block content %}
+    {% if ret.flag  %}
+        少侠！恭喜你完成了小英兽【{{ ret.word }}】的孵化，它的叫声是【{{ ret.pronunciation }}】，叫声意思是【{{ ret.paraphrase }}】<br>
+        你获得了一枚英兽之壳。
+
+        {% else %}
+        很遗憾，孵化失败了。可能是因为【{{ ret.reason }}】。
+
+    {% endif %}
+    你已有【{{ ret.count }}】枚英兽之壳，
+    {% if ret.count >= 10 %}
+        已经达成了【孵化10个小英兽】的任务，可【<a href="/studygame/doneTask?taskid=hatch_en_word">领取】任务奖励。</a>
+        {% else %}
+        尚未达成【孵化10个小英兽】的任务，继续加油哦！。
+    {% endif %}
+
+    <a href="hatch_en_word">孵化下一个小英兽。</a>
+
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends "studygame/base.html" %}
+{% block content %}
+少侠！请先完成任务，填写任务报告后就可以交任务了。<br><br><br>
+<form action="/studygame/complete_task" method="post">{% csrf_token %}
+    <input type="hidden" name="task_id" value="{{ task_id }}">
+    <textarea name="report" maxlength="500" style="height: 100px ;width: 350px"></textarea><br><br>
+    <input type="submit" value="交任务">
+</form>
+{% endblock %}

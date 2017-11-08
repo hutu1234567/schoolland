@@ -1,0 +1,23 @@
+{% extends "studygame/base.html" %}
+{% block content %}
+    <fieldset>
+    <legend>基本信息</legend>
+    英文名：{{ player.english_name }}<br>
+    中文名：{{ player.chinese_name }}<br>
+    斯古币：{{ player.school_coin }}<br><br>
+    </fieldset>
+
+    <fieldset>
+    <legend>能力属性</legend>
+    英语力：{{ player.english_ability }}<br>
+    语文力：{{ player.chinese_ability }}<br>
+    数学力：{{ player.math_ability }}<br>
+    美术力：{{ player.drawing_ability }}<br>
+    音乐力：{{ player.music_ability }}<br>
+    劳动力：{{ player.labour_ability }}<br>
+    身体力：{{ player.physique_ability }}<br>
+    记忆力：{{ player.memory }}<br>
+    </fieldset>
+    <a href="studygame/task_history">查看任务完成历史</a><br>
+    <a href="studygame/growup_history">查看能力成长趋势</a><br>
+{% endblock %}

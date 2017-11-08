@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>少侠，欢迎来到斯古大陆</title>
+    {% load staticfiles %}
+    <script type="text/javascript">
+        //history.go(1);
+    </script>
+</head>
+<body>
+<div id="content" style="overflow-y:scroll;height: 480px">
+    {% block content %}{% endblock %}
+</div>
+<div id="bottom" style="border-style: solid;border-color: blue;position:fixed;bottom:0;width: 500px;">
+    <a href="\studygame\player" target＝_blank>
+        <img src="{% static 'studygame\img\main\player.png' %} " style="width: 100px;height: 100px;left: 50px"
+             title="玩家中心"/>
+    </a>
+    <a href="\studygame\task_center?subject=all" target＝_blank>
+        <img src="{% static 'studygame\img\main\taskcenter.png' %} " style="width: 100px;height: 100px;left: 200px"
+             title="任务中心">
+    </a>
+    <a href="\studygame\shop" target＝_blank>
+        <img src="{% static 'studygame\img\main\shop.png' %} " style="width: 100px;height: 100px;left:350px" title="斯古商城">
+    </a>
+
+    <a href="\admin" target＝_blank>
+        <img src="{% static 'studygame\img\main\manage.jpg' %} " style="width: 100px;height: 100px;left:350px"
+             title="管理维护">
+    </a>
+</div>
+
+</body>
+</html>

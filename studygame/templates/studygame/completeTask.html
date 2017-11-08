@@ -1,0 +1,10 @@
+{% extends "studygame/base.html" %}
+{% block content %}
+    {% if ret.flag %}
+
+        少侠！恭喜你完成了【{{ ret.subject }}】【{{ ret.name }}】任务，获得{{ ret.reward }}个斯古币。<br><br><br>
+    {% else %}
+        很遗憾，任务还没完成，因为【{{ ret.reason }}】
+    {% endif %}
+
+{% endblock %}

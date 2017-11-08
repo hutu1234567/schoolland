@@ -1,0 +1,54 @@
+{% extends "studygame/base.html" %}
+{% block content %}
+
+    少侠！有些任务要拜托你了，小小奖赏，不成敬意。
+    <table border="1">
+        <th>
+            任务
+        </th>
+        <th>
+            科目
+        </th>
+        <th>
+            说明
+        </th>
+        <th>
+            奖励
+        </th>
+        <th>
+            今日已完成
+        </th>
+        <th>
+            加油
+        </th>
+        {% for task in tasks %}
+            <tr>
+                <td>
+                    {{ task.name }}
+                </td>
+                <td>
+                    <a href="/studygame/task_center?subject={{ task.subject }}"> {{ task.get_subject_display }} </a>
+                </td>
+                <td>
+                    {{ task.describe }}
+                </td>
+                <td>
+                    {{ task.reward }}
+                </td>
+
+                <td>
+                    {{ task.qty }}
+                </td>
+
+                <td>
+                    {% if task.url == ''  %}
+                        <a href="/studygame/do_task?taskid={{ task.id }}">做任务</a>
+                    {% else %}
+                        <a href="/studygame/{{ task.url }}">做任务</a>
+                    {% endif %}
+
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
