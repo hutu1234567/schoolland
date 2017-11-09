@@ -1,0 +1,37 @@
+{% extends "studygame/base.html" %}
+{% load staticfiles %}
+{% block content %}
+
+    <table border="1" style="border-style: solid">
+        <tr><th>意思</th><th>名字</th><th>你写的名字</th><th>结果</th></tr>
+    {% for each in vocabularys %}
+        <tr>
+        <td>{{ each.paraphrase }}</td>
+        <td>{{ each.word }}</td>
+        <td>{{ each.answer }}</td>
+        {% if each.word == each.answer %}
+            <td><img src="{% static "studygame/img/common/right.jpg" %}" width="25px" height="25px"></td>
+        {% else %}
+            <td><img src="{% static "studygame/img/common/wrong.jpg" %}" width="25px" height="25px"></td>
+        {% endif %}
+        </tr>
+    {% endfor %}
+    </table>
+    {% if flag %}
+        <img src="{% static 'studygame/img/face/encouragement.png' %}" height="150px" width="150px"><br>
+        少侠威武，【30】只【英兽】一只不落地吸进了宝葫芦，获得【英兽权杖】一支，完成【一举挑战30个英兽】任务，
+    {% else %}
+        <img src="{% static 'studygame/img/face/comfort.png' %}" height="150px" width="150px"><br>
+        真遗憾，有些英兽逃跑啦。
+    {% endif %}
+    你现在拥有【{{ count }}】个【英兽权杖】，
+    {% if count > 0 %}
+        <form action="/studygame/complete_task" method="post">{% csrf_token %}
+            <input type="hidden" name="task_id" value="challenge_thirty_en_word">
+            <input type="hidden"  name="report" value="一举挑战30个英兽">
+            可<input type="submit">领取</input>任务奖励。
+        </form>
+    {% else %}
+        尚未完成任务。
+    {% endif %}
+{% endblock %}

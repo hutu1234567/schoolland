@@ -1,10 +1,29 @@
 {% extends "studygame/base.html" %}
 {% block content %}
-    {% if ret.flag %}
+    {% if flag %}
 
-        少侠！恭喜你完成了【{{ ret.subject }}】【{{ ret.name }}】任务，获得{{ ret.reward }}个斯古币。<br><br><br>
+        少侠！恭喜你完成了【{{ subject }}】【{{ name }}】任务，获得{{ reward }}个斯古币。<br><br>
+        你的以下能力得到提升：<br>
+        <table border="1" style="border-style: solid">
+        <tr><th>能力</th><th>提升点数</th><th>当前点数</th></tr>
+        {% for each in abilitys %}
+        <tr>
+            <td>{{ each.name }}</td>
+            <td>
+                {% if each.growup > 0 %}
+                    <font color="red"><b>
+                {% endif %}
+                {{ each.growup }}
+                {% if each.growup > 0 %}
+                    </b></font>
+                {% endif %}
+            </td>
+            <td>{{ each.current }}</td>
+        </tr>
+        {% endfor %}
+        </table>
     {% else %}
-        很遗憾，任务还没完成，因为【{{ ret.reason }}】
+        很遗憾，任务还没完成，因为【{{ reason }}】
     {% endif %}
 
 {% endblock %}

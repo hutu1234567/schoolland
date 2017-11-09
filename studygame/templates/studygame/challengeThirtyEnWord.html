@@ -1,0 +1,26 @@
+{% extends "studygame/base.html" %}
+{% load staticfiles %}
+{% block content %}
+    {% if flag %}
+        少侠！接招吧，你能准确报上它们的名称吗？<br>
+        <form action="challenge_thirty_en_word_result/" method="post" id="fromId">{% csrf_token %}
+            {% for each in vocabularys %}
+                <input type="text" name="paraphrase[]" value="{{ each.paraphrase }}" readonly="true" size="60">
+                <input type="text" name="answer[]" size="35">
+                <input type="hidden" name="word[]" value="{{ each.word }}" size="35">
+                <br>
+            {% endfor %}
+            <input type="image" src="{% static 'studygame/img/action/cucurbit.png' %}"  title="收！[absorb]"
+               onclick="javascript:docucument.getElementById('fromId').submit();" style="width:150px;height:120px"/>
+        </form>
+    {% else %}
+        {% if count == 0 %}
+            <img src="{% static 'studygame/img/face/horrific.png' %}"><br>
+            太可怕了，小英兽已经被你赶尽杀绝了。快去<a href="\studygame\hatch_en_word\">【 孵化】</a>一些吧。
+        {% else %}
+            <img src="{% static 'studygame/img/face/scary.png' %}"><br>
+            啊呀，小英兽只有【{{ count }}】只了，都快被你杀成濒危动物了。快去<a href="\studygame\hatch_en_word\">【 孵化】</a>一些吧。
+        {% endif %}
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "studygame/base.html" %}
+{% block content %}
+    <table border="1" style="border-style: solid">
+        <tr><th>完成日期</th><th>任务名称</th><th>任务说明</th><th>获得赏金</th></tr>
+    {% for taskHis in list.object_list %}
+        <tr>
+        <td>{{ taskHis.completion_date }}</td>
+        <td>{{ taskHis.task.name }}</td>
+        <td>{{ taskHis.desc }}</td>
+        <td>{{ taskHis.actual_reward }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+<div class="pagination">
+    <span class="step-links">
+        {% if list.has_previous %}
+            <a href="?page={{ list.previous_page_number }}">前一页</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ list.number }} of {{ list.paginator.num_pages }}.
+        </span>
+
+        {% if list.has_next %}
+            <a href="?page={{ list.next_page_number }}">后一页</a>
+        {% endif %}
+    </span>
+</div>
+{% endblock %}
